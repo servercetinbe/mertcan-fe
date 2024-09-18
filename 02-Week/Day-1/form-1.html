@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <link rel="stylesheet" href="form1.css">
+
+<script>
+function validateForm() {
+  let x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+</script>
+
+<script>
+  function myFunction() {
+    // Get the value of the input field with id="numb"
+    let x = document.getElementById("numb").value;
+    // If x is Not a Number or less than one or greater than 10
+    let text;
+    if (isNaN(x) || x < 1 || x > 10) {
+      text = "Input not valid";
+    } else {
+      text = "Input OK";
+    }
+    document.getElementById("demo").innerHTML = text;
+  }
+  </script>
+</head>
+<body>
+
+<h2>JavaScript Validation</h2>
+
+<form name="myForm"onsubmit="return validateForm()" method="post">
+  Name: <input type="text" name="fname">
+  <input type="submit" value="Submit">
+</form>
+
+<p>Please input a number between 1 and 10:</p>
+
+<input id="numb">
+
+<button type="button" onclick="myFunction()">Submit</button>
+
+<p id="demo"></p>
+
+
+<form>
+  <label for="animal">What is your favorite animal?</label>
+  <input type="text" id="animal" name="animal">
+  <button>Save</button>
+</form>
+
+
+<form>
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+  </div>
+  <div>
+    <label for="photo">Photo</label>
+    <input type="file" id="photo" name="photo">
+  </div>
+  <button>Save</button>
+</form>
+
+
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="name">Name (required)</label>
+      <input required type="text" id="name" name="name">
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="email">Email (required)</label>
+      <input required type="email" id="email" name="email">
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+
+
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="password">Password (required)</label>
+      <input required type="password" minlength="8" id="password" name="password"aria-describedby="password-validation">
+      <span id="password-validation" class="validation-message">Please use at least eight characters.</span>
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+<div class="wrapper">
+  <p class="warning"><strong>Disclaimer:</strong> This is a demo showing how you shouldn't do it. Buttons should look like buttons.</p>
+  <form>
+    <div>
+      <label for="name">Name</label>
+<input type="text" id="name" name="name">
+
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+<!-- ACCESIBILITY -->
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="name">Name</label>
+<input type="text" id="name" name="name" required>
+
+    </div>
+    <div class="looks-like-label" for="name1">Name</div>
+    <div id="name1" class="looks-like-input" contenteditable></div>
+    <button>Save</button>
+  </form>
+</div>
+<!-- LANGUAGE -->
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="animal">What is your favorite animal?</label>
+      <input type="text" id="animal" name="animal">
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+<!-- AUTO FILL -->
+
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="address-one">Address line</label>
+      <input autocomplete="address-line1" required type="text" id="address-one" name="address-one">
+    </div>
+    <div>
+      <label for="city">City</label>
+      <input autocomplete="address-level2" required type="text" id="city" name="city">
+    </div>
+    <div>
+      <label for="state">State / Province / Region (optional)</label>
+      <input autcomplete="address-level1" type="text" id="state" name="state">
+    </div>
+    <div>
+<label for="zip">ZIP / Postal code (optional)</label>
+      <input autocomplete="postal-code" type="text" id="zip" name="zip">
+    </div>
+    <div>
+<label for="country">Country</label>
+      <input autocomplete="country" type="text" id="country" name="country">
+    </div>
+    <button>Save address</button>
+  </form>
+</div>
+<!-- TELEPHONE NUMBER -->
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="number">Telephone number</label>
+      <input type="tel" id="number" name="number">
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+<!-- FORM POST -->
+<div class="wrapper">
+  <form method="post" enctype="multipart/form-data">
+<div>
+<label for="file">Choose file to upload</label>
+<input type="file" id="file" name="file" multiple>
+</div>
+<div>
+<button>Upload image</button>
+</div>
+</form>
+</div>
+<!-- DATE -->
+
+<div class="wrapper">
+  <form>
+    <div>
+      <label for="trip">birthdate</label>
+      <input type="date" id="trip" name="trip">
+    </div>
+    <button>Search</button>
+  </form>
+</div>
+
+
+<div class="wrapper">
+  <form>
+    <div>
+      <fieldset>
+  <legend>What is your favorite web technology?</legend>
+  <input type="radio" name="webfeature" value="html" id="html">
+  <label for="html">HTML</label>
+  
+  <input type="radio" name="webfeature" value="css" id="css">
+  <label for="css">CSS</label>
+  
+</fieldset>
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+<div class="wrapper">
+  <form action="https://codepen.io/web-dot-dev/pen/7225931596b7eeafc448ad55d9c980fd" target="-blank">
+    <div>
+      <label for="mountain">What is the highest mountain in Africa?</label>
+      <select id="mountain" name="mountain">
+        <option value="everest">Mount Everest</option>
+        <option value="kilimanjaro">Mount Kilimanjaro</option>
+        <option value="meru">Mount Meru</option>
+      </select>
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+
+
+<script src="form1.js"></script>
+<div class="wrapper">
+  <form>
+    <div>
+      <fieldset>
+  <legend>What is your favorite web technology?</legend>
+  <input type="radio" name="webfeature" value="html" id="html" class="radioField" data-controls="html-additional">
+  <label for="html">HTML</label>
+        <div class="additional" id="html-additional"><label for="html-element">What is your favorite HTML element?</label>
+          <input type="text" id="html-element" name="html-element"></div>
+  <input type="radio" name="webfeature" value="css" id="css" class="radioField" data-controls="css-additional">
+  <label for="css">CSS</label>
+  <div class="additional" id="css-additional"><label for="css-property">What is your favorite CSS property?</label>
+          <input type="text" id="css-property" name="css-property"></div>
+</fieldset>
+    </div>
+    <button>Save</button>
+  </form>
+</div>
+</body>
+</html>
