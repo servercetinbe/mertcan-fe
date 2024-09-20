@@ -1,27 +1,27 @@
 # Prettier ve ESLint Kullanım Kılavuzu
 
-Bu kılavuz, Prettier ve ESLint'in nasıl kurulacağını ve kullanılacağını açıklamaktadır.
+This guide explains how to install and use Prettier and ESLint.
 
-## Kurulum
+## Installation
 
-### Adım 1: Prettier ve ESLint'i Projeye Dahil Etme
+### Step 1: Adding Prettier and ESLint to the Project
 
-Öncelikle, Prettier ve ESLint'i proje bağımlılıkları olarak ekleyin:
+First, add Prettier and ESLint as project dependencies:
 
 ```bash
 npm install --save-dev prettier eslint
 ```
 
-### Adım 2: Prettier ve ESLint Yapılandırma Dosyalarını Oluşturma
+### Step 2: Creating Prettier and ESLint Configuration Files
 
-Proje kök dizininde `.prettierrc` ve `.eslintrc.json` dosyalarını oluşturun.
+Create `.prettierrc` and `.eslintrc.json` files in the root directory of the project.
 
 #### `.prettierrc`
 
 ```json
 {
-    "singleQuote": true,
-    "trailingComma": "all"
+  "singleQuote": true,
+  "trailingComma": "all"
 }
 ```
 
@@ -29,40 +29,37 @@ Proje kök dizininde `.prettierrc` ve `.eslintrc.json` dosyalarını oluşturun.
 
 ```json
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "semi": ["error", "always"],
-        "quotes": ["error", "single"]
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
+  }
 }
 ```
 
-## Kullanım
+## Usage
 
-### Adım 3: Prettier ve ESLint Komutlarını Çalıştırma
+### Step 3: Running Prettier and ESLint Commands
 
-Aşağıdaki komutları kullanarak Prettier ve ESLint'i çalıştırabilirsiniz:
+You can run Prettier and ESLint using the following commands:
 
 #### Prettier
 
@@ -76,15 +73,15 @@ npx prettier --write .
 npx eslint .
 ```
 
-### Adım 4: Prettier ve ESLint'i Git Hooklarına Entegre Etme
+### Step 4: Integrating Prettier and ESLint into Git Hooks
 
-`husky` ve `lint-staged` kullanarak Prettier ve ESLint'i git hooklarına entegre edebilirsiniz:
+You can integrate Prettier and ESLint into git hooks using `husky` and `lint-staged`:
 
 ```bash
 npm install --save-dev husky lint-staged
 ```
 
-`package.json` dosyasına aşağıdaki bölümü ekleyin:
+Add the following section to the `package.json` file:
 
 ```json
 "husky": {
@@ -100,4 +97,4 @@ npm install --save-dev husky lint-staged
 }
 ```
 
-Bu adımları takip ederek Prettier ve ESLint'i projenizde kullanabilirsiniz.
+By following these steps, you can use Prettier and ESLint in your project.
