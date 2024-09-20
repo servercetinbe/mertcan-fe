@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es2021": true
+    },
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],// contains the most commonly used rules
+    
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["react"], // contains react rules
+    "rules": {
+        "prettier/prettier": ["error", { "singleQuote": true, "semi": false }], //prettier
+        "prefer-arrow-callback": "error", // enforces the use of ES6 arrow functions in callbacks
+        "object-curly-spacing": ["error", "always"], // enforces spacing inside of object curly braces
+        "indent": ["error", 2], // enforces 2 space indentation
+        "linebreak-style": ["error", "unix"], //
+        "quotes": ["error", "single"], // enforces the use of single quotes
+        "semi": ["error", "always"], // enforces the use of semicolons at the end of statements
+        "no-unused-vars": ["error"], // warns about unused variables
+        "curly": ["error", "all"], // enforces the use of curly braces in if blocks
+        "no-var": "error", // disallows the use of var
+        "eqeqeq": ["error", "always"], // enforces the use of === instead of == for type-safe equality checks, and !== instead of !=
+        "arrow-spacing": ["error", { "before": true, "after": true }], // enforces spacing around arrow function arrows
+        "no-trailing-spaces": "error", // disallows trailing spaces at the end of lines
+        "space-before-function-paren": ["error", "always"], // enforces spacing before function parentheses
+        "max-len": ["error", { "code": 80 }], // limits the maximum length of lines
+        "no-multiple-empty-lines": ["error", { "max": 1 }] // disallows multiple empty lines
+    }
+}
