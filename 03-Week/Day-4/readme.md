@@ -6,6 +6,7 @@
 3. **Learn and apply Single Sign-On (SSO) basics**
 4. **Explore session-based authentication**
 
+
 ## Detailed Breakdown
 
 ### 1. Implement JWT (JSON Web Token) Authentication
