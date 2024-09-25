@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Based Auth Example</title>
+</head>
+<body>
+    <h2>Register Form</h2>
+    <form id="registerForm">
+        <input type="text" id="regUsername" placeholder="Username"><br><br>
+        <input type="password" id="regPassword" placeholder="Password"><br><br>
+        <button type="button" onclick="register()">Register</button>
+    </form>
+
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username"><br><br>
+        <input type="password" id="password" placeholder="Password"><br><br>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <h3>Stored Token:</h3>
+    <p id="tokenDisplay">No token yet.</p>
+
+    <script>
+        function register() {
+            const username = document.getElementById("regUsername").value;
+            const password = document.getElementById("regPassword").value;
+
+            if (username && password) {
+                // Kullanıcı bilgilerini localStorage'da saklama
+                localStorage.setItem('registeredUser', JSON.stringify({ username, password }));
+                alert("Registration successful!");
+            } else {
+                alert("Please enter a username and password.");
+            }
+        }
+
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Kayıtlı kullanıcı bilgilerini alma
+            const registeredUser = JSON.parse(localStorage.getItem('registeredUser'));
+
+            if (registeredUser && username === registeredUser.username && password === registeredUser.password) {
+                // Simüle edilen token oluşturma
+                const token = generateToken(username);
+                
+                // Token'ı localStorage'da saklama
+                localStorage.setItem('authToken', token);
+
+                // Token'ı ekranda gösterme
+                document.getElementById("tokenDisplay").innerText = token;
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+
+        // Basit bir token üretme fonksiyonu
+        function generateToken(username) {
+            const fakeToken = `token_${btoa(username)}_${new Date().getTime()}`;
+            return fakeToken;
+        }
+    </script>
+</body>
+</html>

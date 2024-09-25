@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Auth Example</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form id="registerForm">
+        <input type="text" id="regUsername" placeholder="Username"><br><br>
+        <input type="password" id="regPassword" placeholder="Password"><br><br>
+        <button type="button" onclick="register()">Register</button>
+    </form>
+
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username"><br><br>
+        <input type="password" id="loginPassword" placeholder="Password"><br><br>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <h3>Stored JWT Token:</h3>
+    <p id="jwtDisplay">No token yet.</p>
+
+    <script>
+        // Using localStorage to simulate user registrations.
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Registration function
+        function register() {
+            const username = document.getElementById("regUsername").value;
+            const password = document.getElementById("regPassword").value;
+
+            // Check if user already exists
+            const userExists = users.some(user => user.username === username);
+            if (userExists) {
+                alert("User already exists!");
+                return;
+            }
+
+            // Add new user
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert("User registered successfully!");
+        }
+
+        // Login and JWT creation function
+        function login() {
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+
+            // User validation
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                const token = createJWT({ username }); // Create JWT
+                localStorage.setItem('jwt', token); // Store the token
+                document.getElementById("jwtDisplay").innerText = token; // Display the token
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+
+        // Simple JWT creation function
+        function createJWT(payload) {
+            const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
+            const body = btoa(JSON.stringify(payload));
+            const signature = "simulatedSignature"; // Fixed value instead of a real signature
+            return `${header}.${body}.${signature}`;
+        }
+    </script>
+</body>
+</html>

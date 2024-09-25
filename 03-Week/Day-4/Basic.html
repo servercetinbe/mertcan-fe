@@ -1,0 +1,71 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Registration and Login</title>
+    </head>
+    <body>
+        <h1>User Registration and Login</h1>
+
+        <div id="registration">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="regUsername">Username:</label>
+                <input type="text" id="regUsername" name="regUsername" required>
+                <br>
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" name="regPassword" required>
+                <br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <div id="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="result"></div>
+
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const regUsername = document.getElementById('regUsername').value;
+                const regPassword = document.getElementById('regPassword').value;
+
+                // Store user information in localStorage
+                localStorage.setItem('username', regUsername);
+                localStorage.setItem('password', regPassword);
+
+                document.getElementById('result').innerText = 'Registration successful!';
+            });
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Retrieve user information from localStorage
+                const storedUsername = localStorage.getItem('username');
+                const storedPassword = localStorage.getItem('password');
+
+                if (username === storedUsername && password === storedPassword) {
+                    document.getElementById('result').innerText = 'Login successful!';
+                } else {
+                    document.getElementById('result').innerText = 'Authentication failed';
+                }
+            });
+        </script>
+    </body>
+    </html>
