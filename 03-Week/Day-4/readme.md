@@ -9,6 +9,7 @@
 
 ## Detailed Breakdown
 
+
 ### 1. Implement JWT (JSON Web Token) Authentication
 - Learn how to create and verify JWTs.
 - Understand the benefits and use cases for JWTs.

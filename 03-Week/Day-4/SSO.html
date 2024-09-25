@@ -30,17 +30,17 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Kayıtlı kullanıcı bilgilerini al
+            // Get registered user information
             const regUsername = localStorage.getItem('username');
             const regPassword = localStorage.getItem('password');
 
-            // Basit doğrulama
+            // Simple validation
             if (username === regUsername && password === regPassword) {
-                // Token oluşturma
+                // Create token
                 sessionStorage.setItem('ssoToken', 'fake-sso-token');
                 alert('Login successful! You can now access other services.');
 
-                // Giriş ve kayıt formunu gizle, servislere erişim bölümünü göster
+                // Hide login and registration form, show service access section
                 document.getElementById('auth-section').style.display = 'none';
                 document.getElementById('service-access').style.display = 'block';
             } else {
@@ -48,8 +48,7 @@
             }
         }
 
-        
-        // Servislere erişim fonksiyonu
+        // Function to access services
         function accessService(serviceName) {
             const token = sessionStorage.getItem('ssoToken');
             if (token) {
@@ -59,7 +58,7 @@
             }
         }
 
-        // Sayfa yüklendiğinde token kontrolü
+        // Token check when the page loads
         window.onload = function() {
             const token = sessionStorage.getItem('ssoToken');
             if (token) {
@@ -68,7 +67,7 @@
             }
         }
 
-        // Oturumu kapatma fonksiyonu
+        // Logout function
         function logout() {
             sessionStorage.removeItem('ssoToken');
             alert('You have been logged out!');
@@ -80,7 +79,7 @@
 <body>
     <h1>SSO (Single Sign-On) Example</h1>
 
-    <!-- Kullanıcı kayıt ve giriş bölümü -->
+    <!-- User registration and login section -->
     <div id="auth-section">
         <div id="register-section">
             <h2>Register</h2>
@@ -105,7 +104,7 @@
         </div>
     </div>
 
-    <!-- Servislere erişim bölümü -->
+    <!-- Service access section -->
     <div id="service-access" style="display:none;">
         <h2>Access Services</h2>
         <div class="service">

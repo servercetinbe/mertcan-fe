@@ -40,7 +40,7 @@
             }
 
             // Add new user
-            
+
             users.push({ username, password });
             localStorage.setItem('users', JSON.stringify(users));
 
@@ -71,6 +71,7 @@
             const signature = "simulatedSignature"; // Fixed value instead of a real signature
             return `${header}.${body}.${signature}`;
         }
+        
     </script>
 </body>
 </html>
