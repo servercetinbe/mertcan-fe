@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSO (Single Sign-On) Detailed Example</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #login-section, #register-section, #service-access { margin-bottom: 20px; }
+        .service { margin-top: 10px; }
+    </style>
+    <script>
+        // User registration function
+        function register() {
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+
+            if (username && password) {
+                // Save user information to localStorage
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                alert('Registration successful! You can now log in.');
+            } else {
+                alert('Please enter a username and password!');
+            }
+        }
+
+        // User login function
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Get registered user information
+            const regUsername = localStorage.getItem('username');
+            const regPassword = localStorage.getItem('password');
+
+            // Simple validation
+            if (username === regUsername && password === regPassword) {
+                // Create token
+                sessionStorage.setItem('ssoToken', 'fake-sso-token');
+                alert('Login successful! You can now access other services.');
+
+                // Hide login and registration form, show service access section
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('service-access').style.display = 'block';
+            } else {
+                alert('Invalid username or password!');
+            }
+        }
+
+        // Function to access services
+        function accessService(serviceName) {
+            const token = sessionStorage.getItem('ssoToken');
+            if (token) {
+                alert(`Access granted to ${serviceName}!`);
+            } else {
+                alert('You need to log in first!');
+            }
+        }
+
+        // Token check when the page loads
+        window.onload = function() {
+            const token = sessionStorage.getItem('ssoToken');
+            if (token) {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('service-access').style.display = 'block';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('ssoToken');
+            alert('You have been logged out!');
+            document.getElementById('auth-section').style.display = 'block';
+            document.getElementById('service-access').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <h1>SSO (Single Sign-On) Example</h1>
+
+    <!-- User registration and login section -->
+    <div id="auth-section">
+        <div id="register-section">
+            <h2>Register</h2>
+            <label for="reg-username">Username:</label>
+            <input type="text" id="reg-username" placeholder="Enter username">
+            <br><br>
+            <label for="reg-password">Password:</label>
+            <input type="password" id="reg-password" placeholder="Enter password">
+            <br><br>
+            <button onclick="register()">Register</button>
+        </div>
+
+        <div id="login-section">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter username">
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password">
+            <br><br>
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- Service access section -->
+    <div id="service-access" style="display:none;">
+        <h2>Access Services</h2>
+        <div class="service">
+            <button onclick="accessService('Service 1')">Access Service 1</button>
+        </div>
+        <div class="service">
+            <button onclick="accessService('Service 2')">Access Service 2</button>
+        </div>
+        <br>
+        <button onclick="logout()">Logout</button>
+    </div>
+</body>
+</html>
