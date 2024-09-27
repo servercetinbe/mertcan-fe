@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Based Authentication Example</title>
+</head>
+<body>
+    <h1>Session Based Authentication</h1>
+
+    <!-- Registration Form -->
+    <div id="registerForm">
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Username"><br>
+        <input type="password" id="registerPassword" placeholder="Password"><br>
+        <button onclick="register()">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" style="display:none;">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username"><br>
+        <input type="password" id="loginPassword" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
+    </div>
+
+
+    
+    <!-- Area Shown After Login -->
+    <div id="dashboard" style="display:none;">
+        <h2>Welcome, <span id="user"></span>!</h2>
+        <p>You are logged in.</p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="SessionBased.js"></script>
+</body>
+</html>
